@@ -48,7 +48,7 @@ const alts = async (band: any): Promise<string[]> => (await band.findAll({ type:
 const texts = async (band: any): Promise<string> =>
   (await band.findAll({ type: 'Text' })).map((t: any) => t.text).join('|')
 
-test('桌面端显示 7D 在前、5H 在后的剩余百分比和重置时间', async ($, on) => {
+test('桌面端显示 5H 在前、7D 在后的剩余百分比和重置时间', async ($, on) => {
   engine(on)
   await $.session.start({ surface: 'desktop', isInteractive: true, cwd: '/work' })
   const band = await mount($)
@@ -58,7 +58,7 @@ test('桌面端显示 7D 在前、5H 在后的剩余百分比和重置时间', a
   expect(all).toContain('3d 9h')
   expect(all).toContain('4h 1m')
   expect(await alts(band)).toEqual(expect.arrayContaining(['7D 剩余 64%', '5H 剩余 90%']))
-  expect(all.indexOf('7D')).toBeLessThan(all.indexOf('5H'))
+  expect(all.indexOf('5H')).toBeLessThan(all.indexOf('7D'))
   expect((await band.find({ type: 'Text', text: /^64%$/ }))?.props.color).not.toBe('error')
   await band.unmount()
 })

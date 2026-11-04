@@ -7,7 +7,7 @@ import {
   barSvg, cacheView, crabSvg, fmtGb, fmtSpan, parseDfFree, parseSwapUsed, pillSvg, ttlOf,
 } from './crab'
 
-// 桌面端输入框上方一行：7D / 5H 剩余用量、提示缓存冷热（小螃蟹）、磁盘和 swap。
+// 桌面端输入框上方一行：5H / 7D 剩余用量、提示缓存冷热（小螃蟹）、磁盘和 swap。
 // 放不下时换行。缓存状态是按主会话最近一次请求自己计时的估算值。
 
 const BAR_W = 56
@@ -24,10 +24,10 @@ const ttlMs = atom({ plugin: 'crab-band', key: 'ttlMs' } as const, ttlOf(undefin
 const sys = atom({ plugin: 'crab-band', key: 'sys' } as const, null as Sys | null)
 
 const NAMES: Record<string, string> = { seven_day: '7D', five_hour: '5H' }
-const ORDER: Record<string, number> = { seven_day: 0, five_hour: 1 }
+const ORDER: Record<string, number> = { five_hour: 0, seven_day: 1 }
 const COLORS: Record<string, string> = { seven_day: ORANGE, five_hour: YELLOW }
 
-/** 只留 7D 和 5H，7D 在前。 */
+/** 只留 5H 和 7D，5H 在前。 */
 const clean = (list: readonly Window[]): Window[] =>
   list
     .filter(w => w.kind in ORDER)
