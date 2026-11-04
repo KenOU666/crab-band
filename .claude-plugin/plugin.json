@@ -1,0 +1,7 @@
+{
+  "name": "crab-band",
+  "version": "0.1.0",
+  "description": "桌面端输入框上方的信息栏：7 天和 5 小时用量、提示缓存冷热（小螃蟹）、磁盘和 swap。",
+  "license": "MIT",
+  "types": "./types/index.d.ts"
+}
